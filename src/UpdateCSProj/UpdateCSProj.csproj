@@ -4,6 +4,15 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <PackageId>jmsudar.UpdateCSProj</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>JMSudar</Authors>
+    <Description>A reusable GitHub Action which updates the .csproj file PropertyGroup block in preparation for publishing to NuGet</Description>
+    <PackageTags>xml;continuous deployment;dotnet</PackageTags>
+    <RepositoryUrl>https://github.com/jmsudar/dotnet-update-csproj-file</RepositoryUrl>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/jmsudar/dotnet-update-csproj-file</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
