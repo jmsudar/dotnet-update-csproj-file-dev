@@ -18,7 +18,7 @@ namespace jmsudar.UpdateCSProj
 
             // Reads from the .csproj file, processes the block
             // and writes it back to the original location. For more info, see
-            // https://github.com/jmsudar/DotNet.Xml/blob/main/src/XML/XML.cs#L127-L158
+            // https://github.com/jmsudar/DotNet.Xml/blob/main/src/XML/XML.cs#L224-L255
             XML.ProcessXmlBlockFromFile<PropertyGroup>(arguments["filePath"], propertyGroup =>
             {
                 if (propertyGroup == null)
