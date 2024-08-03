@@ -57,7 +57,39 @@ public class UpdateCSProjTests
         Assert.IsTrue(updatedContent.Contains("<PackageProjectUrl>git@github.com:jmsudar/DotNet.Xml.git</PackageProjectUrl>"));
         Assert.IsTrue(updatedContent.Contains("<PackageReadmeFile>README.md</PackageReadmeFile>"));
     }
+
+    [TestMethod]
+    public void UpdateCSProj_WithSomeEmptyArguments_UpdatesCsprojFile()
+    {
+        string[] args = {
+            $"--filePath={_tempFilePath}",
+            "--packageId=jmsudar.DotNet.Xml",
+            "--version=1.2.0",
+            "--authors=JMSudar",
+            "--description=",
+            "--packageTags=",
+            "--repositoryUrl=git@github.com:jmsudar/DotNet.Xml.git",
+            "--packageLicenseExpression=GPL-3.0-or-later",
+            "--packageProjectUrl=git@github.com:jmsudar/DotNet.Xml.git",
+            "--packageReadmeFile="
+        };
+
+        UpdateCSProj.Main(args);
+
+        string updatedContent = File.ReadAllText(_tempFilePath);
+        Assert.IsTrue(updatedContent.Contains("<PackageId>jmsudar.DotNet.Xml</PackageId>"));
+        Assert.IsTrue(updatedContent.Contains("<Version>1.2.0</Version>"));
+        Assert.IsTrue(updatedContent.Contains("<Authors>JMSudar</Authors>"));
+        Assert.IsTrue(updatedContent.Contains("<RepositoryUrl>git@github.com:jmsudar/DotNet.Xml.git</RepositoryUrl>"));
+        Assert.IsTrue(updatedContent.Contains("<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>"));
+        Assert.IsTrue(updatedContent.Contains("<PackageProjectUrl>git@github.com:jmsudar/DotNet.Xml.git</PackageProjectUrl>"));
+        Assert.IsFalse(updatedContent.Contains("<Description>"));
+        Assert.IsFalse(updatedContent.Contains("<PackageTags>"));
+        Assert.IsFalse(updatedContent.Contains("<PackageReadmeFile>"));
+    }
 }
+
+
 
 [TestClass]
 public class ArgsParserTests
