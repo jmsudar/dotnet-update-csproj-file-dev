@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <PackageId>jmsudar.UpdateCSProj</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.2.0</Version>
     <Authors>JMSudar</Authors>
     <Description>A reusable GitHub Action which updates the .csproj file PropertyGroup block in preparation for publishing to NuGet</Description>
     <PackageTags>xml;continuous deployment;dotnet</PackageTags>
