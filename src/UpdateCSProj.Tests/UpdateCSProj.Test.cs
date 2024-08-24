@@ -25,7 +25,10 @@ public class UpdateCSProjTests
     [TestCleanup]
     public void Cleanup()
     {
-        File.Delete(_tempFilePath);
+        if (File.Exists(_tempFilePath))
+        {
+            File.Delete(_tempFilePath);
+        }
     }
 
     [TestMethod]
@@ -46,6 +49,11 @@ public class UpdateCSProjTests
 
         UpdateCSProj.Main(args);
 
+        if (_tempFilePath == null)
+        {
+            Assert.Fail("Temp file path is null");
+            return;
+        }
         string updatedContent = File.ReadAllText(_tempFilePath);
         Assert.IsTrue(updatedContent.Contains("<PackageId>jmsudar.DotNet.Xml</PackageId>"));
         Assert.IsTrue(updatedContent.Contains("<Version>1.2.0</Version>"));
@@ -76,6 +84,11 @@ public class UpdateCSProjTests
 
         UpdateCSProj.Main(args);
 
+        if (_tempFilePath == null)
+        {
+            Assert.Fail("Temp file path is null");
+            return;
+        }
         string updatedContent = File.ReadAllText(_tempFilePath);
         Assert.IsTrue(updatedContent.Contains("<PackageId>jmsudar.DotNet.Xml</PackageId>"));
         Assert.IsTrue(updatedContent.Contains("<Version>1.2.0</Version>"));
