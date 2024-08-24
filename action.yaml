@@ -14,11 +14,11 @@ on:
       implicit-usings:
         description: 'Whether or not to use implicit usings'
         required: true
-        default: 'false'
+        default: false
       nullable:
         description: 'Whether or not to use nullable reference types'
         required: true
-        default: 'false'
+        default: true
       package-id:
         description: 'The package id for your project'
         required: true
