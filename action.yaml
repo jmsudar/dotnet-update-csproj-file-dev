@@ -76,6 +76,7 @@ runs:
           echo "package-license: ${PACKAGE_LICENSE}"
           exit 1
         fi
+      shell: bash
 
     - name: Checkout repository
       uses: actions/checkout@v4
