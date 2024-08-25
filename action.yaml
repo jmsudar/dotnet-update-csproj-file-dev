@@ -32,7 +32,7 @@ on:
           The author of the project 
           Defaults to repo owner
         required: true
-        default: ${{ github.repository_owner }}
+        default: ''
       package-tags:
         description: 'The tags for your package'
         required: false
@@ -40,9 +40,8 @@ on:
       repository-url:
         description: |
           The repository URL for your project
-          Defaults to 'git@github.com:${{ github.repository }}.git'
-        required: true
-        default: 'git@github.com:${{ github.repository }}.git'
+        required: false
+        default: ''
       package-license:
         description: 'The license for your package'
         required: true
@@ -50,9 +49,8 @@ on:
       package-project-url:
         description: |
           The project URL for your package
-          Defaults to 'git@github.com:${{ github.repository }}.git'
-        required: true
-        default: 'git@github.com:${{ github.repository }}.git'
+        required: false
+        default: ''
       package-readme-file:
         description: 'The readme file for your package'
         required: true
@@ -68,13 +66,15 @@ jobs:
           FILE_PATH: ${{ inputs.file-path }}
           PACKAGE_ID: ${{ inputs.package-id }}
           VERSION: ${{ inputs.version }}
+          AUTHOR: ${{ inputs.author }}
           PACKAGE_LICENSE: ${{ inputs.package-license }}
         run: |
-          if [[ -z "${FILE_PATH}" || -z "${PACKAGE_ID}" || -z "${VERSION}" || -z "${PACKAGE_LICENSE}" ]]; then
+          if [[ -z "${FILE_PATH}" || -z "${PACKAGE_ID}" || -z "${VERSION}" || -z "${AUTHOR}" || -z "${PACKAGE_LICENSE}" ]]; then
             echo "One or more required inputs are missing."
             echo "file-path: ${FILE_PATH}"
             echo "package-id: ${PACKAGE_ID}"
             echo "version: ${VERSION}"
+            echo "author: ${AUTHOR}"
             echo "package-license: ${PACKAGE_LICENSE}"
             exit 1
           fi
