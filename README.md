@@ -28,16 +28,20 @@ You can now use jmsudar.UpdateCSProj directly within your GitHub Actions workflo
 
 To run this as an action, include a block following the pattern of the step below in your CD workflow.
 
+The pattern below, with the various `${{ github.* }}` calls and the reference with a step identified as `bump_version`, is intended to follow the pattern of a project initialized from [this library template](https://github.com/jmsudar/dotnet-library-template). If you did not follow this template you will want to update the fields to reflect the state of your project.
+
 ```shell
 - name: Update .csproj file
 uses: jmsudar/dotnet-update-csproj-file@main
 with:
-  file-path: 'src/YourProject/YourProject.csproj'
-  package-id: 'com.example.YourProject'
-  version: '1.0.0'
-  author: 'Jane Doe'
-  package-tags: 'utility,automation'
-  package-license: 'MIT'
+  file-path: 'src/${{ github.repository }}/${{ github.repository }}.csproj'
+  package-id: '${{ github.repository_owner }}.${{ github.repository }}'
+  version: '${{ steps.bump_version.outputs.new_tag }}'
+  author: '${{ github.repository_owner }}'
+  package-tags: 'utility,test,automation'
+  repository-url: 'git@github.com:${{ github.repository }}.git'
+  package-license: 'GPL-3.0-or-later'
+  package-project-url: 'git@github.com:${{ github.repository }}.git'
 ```
 
 #### Input Parameters
