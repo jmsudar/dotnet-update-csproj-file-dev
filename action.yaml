@@ -1,117 +1,116 @@
 name: Update CSProj
+description: 'Build and test .NET projects'
+branding:
+  icon: 'package'
+  color: 'green'
+inputs:
+  file-path:
+    description: 'The path to the csproj file'
+    required: true
+    default: ''
+  target-framework:
+    description: 'The framework for your dotnet build'
+    required: true
+    default: '6.0'
+  implicit-usings:
+    description: 'Whether or not to use implicit usings'
+    required: true
+    default: false
+  nullable:
+    description: 'Whether or not to use nullable reference types'
+    required: true
+    default: true
+  package-id:
+    description: 'The package id for your project'
+    required: true
+    default: ''
+  version:
+    description: 'The current version for your project'
+    required: true
+    default: ''
+  author:
+    description: |
+      The author of the project 
+      Defaults to repo owner
+    required: true
+    default: ''
+  package-tags:
+    description: 'The tags for your package'
+    required: false
+    default: ''
+  repository-url:
+    description: |
+      The repository URL for your project
+    required: false
+    default: ''
+  package-license:
+    description: 'The license for your package'
+    required: true
+    default: ''
+  package-project-url:
+    description: |
+      The project URL for your package
+    required: false
+    default: ''
+  package-readme-file:
+    description: 'The readme file for your package'
+    required: true
+    default: 'README.md'
+runs:
+  using: 'composite'
+  steps:
+    - name: Check required inputs
+      env:
+        FILE_PATH: ${{ inputs.file-path }}
+        PACKAGE_ID: ${{ inputs.package-id }}
+        VERSION: ${{ inputs.version }}
+        AUTHOR: ${{ inputs.author }}
+        PACKAGE_LICENSE: ${{ inputs.package-license }}
+      run: |
+        if [[ -z "${FILE_PATH}" || -z "${PACKAGE_ID}" || -z "${VERSION}" || -z "${AUTHOR}" || -z "${PACKAGE_LICENSE}" ]]; then
+          echo "One or more required inputs are missing."
+          echo "file-path: ${FILE_PATH}"
+          echo "package-id: ${PACKAGE_ID}"
+          echo "version: ${VERSION}"
+          echo "author: ${AUTHOR}"
+          echo "package-license: ${PACKAGE_LICENSE}"
+          exit 1
+        fi
 
-on:
-  workflow_dispatch:
-    inputs:
-      file-path:
-        description: 'The path to the csproj file'
-        required: true
-        default: ''
-      target-framework:
-        description: 'The framework for your dotnet build'
-        required: true
-        default: '6.0'
-      implicit-usings:
-        description: 'Whether or not to use implicit usings'
-        required: true
-        default: false
-      nullable:
-        description: 'Whether or not to use nullable reference types'
-        required: true
-        default: true
-      package-id:
-        description: 'The package id for your project'
-        required: true
-        default: ''
-      version:
-        description: 'The current version for your project'
-        required: true
-        default: ''
-      author:
-        description: |
-          The author of the project 
-          Defaults to repo owner
-        required: true
-        default: ''
-      package-tags:
-        description: 'The tags for your package'
-        required: false
-        default: ''
-      repository-url:
-        description: |
-          The repository URL for your project
-        required: false
-        default: ''
-      package-license:
-        description: 'The license for your package'
-        required: true
-        default: ''
-      package-project-url:
-        description: |
-          The project URL for your package
-        required: false
-        default: ''
-      package-readme-file:
-        description: 'The readme file for your package'
-        required: true
-        default: 'README.md'
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ inputs.target-framework }}
 
-    steps:
-      - name: Check required inputs
-        env:
-          FILE_PATH: ${{ inputs.file-path }}
-          PACKAGE_ID: ${{ inputs.package-id }}
-          VERSION: ${{ inputs.version }}
-          AUTHOR: ${{ inputs.author }}
-          PACKAGE_LICENSE: ${{ inputs.package-license }}
-        run: |
-          if [[ -z "${FILE_PATH}" || -z "${PACKAGE_ID}" || -z "${VERSION}" || -z "${AUTHOR}" || -z "${PACKAGE_LICENSE}" ]]; then
-            echo "One or more required inputs are missing."
-            echo "file-path: ${FILE_PATH}"
-            echo "package-id: ${PACKAGE_ID}"
-            echo "version: ${VERSION}"
-            echo "author: ${AUTHOR}"
-            echo "package-license: ${PACKAGE_LICENSE}"
-            exit 1
-          fi
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ inputs.target-framework }}
-
-      - name: Build and run UpdateCSProj
-        env:
-          FILE_PATH: ${{ inputs.file-path }}
-          TARGET_FRAMEWORK: ${{ inputs.target-framework }}
-          IMPLICIT_USINGS: ${{ inputs.implicit-usings }}
-          NULLABLE: ${{ inputs.nullable }}
-          PACKAGE_ID: ${{ inputs.package-id }}
-          VERSION: ${{ inputs.version }}
-          AUTHOR: ${{ inputs.author }}
-          PACKAGE_TAGS: ${{ inputs.package-tags }}
-          REPOSITORY_URL: ${{ inputs.repository-url }}
-          PACKAGE_LICENSE: ${{ inputs.package-license }}
-          PACKAGE_PROJECT_URL: ${{ inputs.package-project-url }}
-          PACKAGE_README_FILE: ${{ inputs.package-readme-file }}
-        run: |
-          dotnet run --project UpdateCSProj.csproj \
-            --filePath ${FILE_PATH} \
-            --targetFramework ${TARGET_FRAMEWORK} \
-            --implicitUsings ${IMPLICIT_USINGS} \
-            --nullable ${NULLABLE} \
-            --packageId ${PACKAGE_ID} \
-            --version ${VERSION} \
-            --author ${AUTHOR} \
-            --packageTags ${PACKAGE_TAGS} \
-            --repositoryUrl ${REPOSITORY_URL} \
-            --packageLicense ${PACKAGE_LICENSE} \
-            --packageProjectUrl ${PACKAGE_PROJECT_URL} \
-            --packageReadmeFile ${PACKAGE_README_FILE}
+    - name: Build and run UpdateCSProj
+      env:
+        FILE_PATH: ${{ inputs.file-path }}
+        TARGET_FRAMEWORK: ${{ inputs.target-framework }}
+        IMPLICIT_USINGS: ${{ inputs.implicit-usings }}
+        NULLABLE: ${{ inputs.nullable }}
+        PACKAGE_ID: ${{ inputs.package-id }}
+        VERSION: ${{ inputs.version }}
+        AUTHOR: ${{ inputs.author }}
+        PACKAGE_TAGS: ${{ inputs.package-tags }}
+        REPOSITORY_URL: ${{ inputs.repository-url }}
+        PACKAGE_LICENSE: ${{ inputs.package-license }}
+        PACKAGE_PROJECT_URL: ${{ inputs.package-project-url }}
+        PACKAGE_README_FILE: ${{ inputs.package-readme-file }}
+      run: |
+        dotnet run --project UpdateCSProj.csproj \
+          --filePath ${FILE_PATH} \
+          --targetFramework ${TARGET_FRAMEWORK} \
+          --implicitUsings ${IMPLICIT_USINGS} \
+          --nullable ${NULLABLE} \
+          --packageId ${PACKAGE_ID} \
+          --version ${VERSION} \
+          --author ${AUTHOR} \
+          --packageTags ${PACKAGE_TAGS} \
+          --repositoryUrl ${REPOSITORY_URL} \
+          --packageLicense ${PACKAGE_LICENSE} \
+          --packageProjectUrl ${PACKAGE_PROJECT_URL} \
+          --packageReadmeFile ${PACKAGE_README_FILE}
+      shell: bash
