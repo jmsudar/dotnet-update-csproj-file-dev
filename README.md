@@ -30,13 +30,13 @@ To run this as an action, include a block following the pattern of the step belo
 
 ```shell
 - name: Update .csproj file
-uses: jmsudar/UpdateCSProj@v1
+uses: jmsudar/dotnet-update-csproj-file@main
 with:
-    file-path: 'src/YourProject/YourProject.csproj'
-    package-id: 'com.example.YourProject'
-    version: '1.0.0'
-    package-tags: 'utility,automation'
-    package-license: 'MIT'
+  file-path: 'src/YourProject/YourProject.csproj'
+  package-id: 'com.example.YourProject'
+  version: '1.0.0'
+  package-tags: 'utility,automation'
+  package-license: 'MIT'
 ```
 
 #### Input Parameters
