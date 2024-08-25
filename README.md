@@ -35,6 +35,7 @@ with:
   file-path: 'src/YourProject/YourProject.csproj'
   package-id: 'com.example.YourProject'
   version: '1.0.0'
+  author: 'Jane Doe'
   package-tags: 'utility,automation'
   package-license: 'MIT'
 ```
@@ -49,11 +50,11 @@ The following input parameters are supported when used as a GitHub Action.
 - nullable: Enables or disables nullable reference types. Set to true to enable, false to disable. Defaults to true.
 - package-id: (Required) The unique package ID for your project, typically following the reverse domain name notation, e.g., com.example.project.
 - version: (Required) The version number for your project, e.g., 1.0.0.
-- author: Specifies the author of the project. Defaults to the GitHub repository owner but can be set to any string or multiple owners.
+- author: Specifies the author of the project. Can be set to any string or multiple owners.
 - package-tags: Tags for your package to help categorize it, separated by commas, e.g., utility,automation.
-- repository-url: The URL of your project’s GitHub repository. Defaults to git@github.com:<owner>/<repository>.git, but you can override it with a different URL.
+- repository-url: The URL of your project’s GitHub repository.
 - package-license: (Required) The license under which your project is distributed, e.g., MIT, GPL-3.0.
-- package-project-url: The URL of your project’s homepage or main page. Defaults to your repository URL. Defaults to git@github.com:<owner>/<repository>.git, but you can override it with a different URL.
+- package-project-url: The URL of your project’s homepage or main page. Defaults to your repository URL.
 - package-readme-file: The path to your README file to include in your package. Defaults to README.md.
 
 ## License
