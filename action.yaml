@@ -107,7 +107,7 @@ runs:
         PACKAGE_PROJECT_URL: ${{ inputs.package-project-url }}
         PACKAGE_README_FILE: ${{ inputs.package-readme-file }}
       run: |
-        dotnet run --project "${{ env.FILEPATH }}" \
+        dotnet run --project "${{ env.UPDATE_FILEPATH }}" \
           --filePath ${FILE_PATH} \
           --targetFramework ${TARGET_FRAMEWORK} \
           --implicitUsings ${IMPLICIT_USINGS} \
