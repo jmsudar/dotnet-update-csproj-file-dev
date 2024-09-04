@@ -90,6 +90,7 @@ runs:
       run: |
         filepath="$(find -name "UpdateCSProj.csproj" 2>/dev/null)"
         echo "FILEPATH=$filepath" >> $GITHUB_ENV
+      shell: bash
 
     - name: Build and run UpdateCSProj
       env:
