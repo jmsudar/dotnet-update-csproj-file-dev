@@ -92,6 +92,13 @@ runs:
         echo "UPDATE_FILEPATH=$update_filepath" >> $GITHUB_ENV
       shell: bash
 
+    - name: Debug File Paths
+      run: |
+        echo "Checking file paths..."
+        find . -type f | grep "UpdateCSProj"
+        ls -R ./src
+      shell: bash
+
     - name: Build and run UpdateCSProj
       env:
         FILE_PATH: ${{ inputs.file-path }}
