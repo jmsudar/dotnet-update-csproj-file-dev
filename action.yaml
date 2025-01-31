@@ -109,6 +109,7 @@ runs:
       run: |
         pwd
         ls
+        ls ./src
         dotnet run --project "./src/UpdateCSProj/UpdateCSProj.csproj" \
           --filePath ${FILE_PATH} \
           --targetFramework ${TARGET_FRAMEWORK} \
