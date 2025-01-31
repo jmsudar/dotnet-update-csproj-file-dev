@@ -88,7 +88,7 @@ runs:
 
     - name: Set Projct Filepath
       run: |
-        update_filepath="$(find -name "UpdateCSProj.cs" 2>/dev/null)"
+        update_filepath="$(find . -name "UpdateCSProj.cs" 2>/dev/null)"
         echo "UPDATE_FILEPATH=$update_filepath" >> $GITHUB_ENV
       shell: bash
 
