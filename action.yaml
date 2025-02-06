@@ -80,6 +80,8 @@ runs:
 
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        repository: ${{ inputs.repository }}      
 
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v4
