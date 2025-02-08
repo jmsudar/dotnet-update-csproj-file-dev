@@ -88,6 +88,12 @@ runs:
       with:
         dotnet-version: ${{ inputs.target-framework }}
 
+    - name: Check Working Env
+      run: |
+        pwd
+        ls
+      shell: bash
+
     - name: Set Projct Filepath
       run: |
         update_filepath="$(find . -name "UpdateCSProj.cs" 2>/dev/null)"
