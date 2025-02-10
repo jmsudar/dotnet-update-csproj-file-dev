@@ -88,23 +88,10 @@ runs:
       with:
         dotnet-version: ${{ inputs.target-framework }}
 
-    - name: Check Working Env
-      run: |
-        pwd
-        ls
-      shell: bash
-
-    - name: Set Projct Filepath
+    - name: Set Project Filepath
       run: |
         update_filepath="$(find . -name "UpdateCSProj.cs" 2>/dev/null)"
         echo "UPDATE_FILEPATH=$update_filepath" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Debug File Paths
-      run: |
-        echo "Checking file paths..."
-        find . -type f | grep "UpdateCSProj"
-        ls -R ./src
       shell: bash
 
     - name: Build and run UpdateCSProj
