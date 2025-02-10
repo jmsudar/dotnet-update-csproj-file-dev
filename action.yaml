@@ -81,7 +81,7 @@ runs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        repository: "https://github.com/jmsudar/dotnet-update-csproj-file"
+        repository: "jmsudar/dotnet-update-csproj-file"
 
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v4
