@@ -109,20 +109,17 @@ runs:
         PACKAGE_PROJECT_URL: ${{ inputs.package-project-url }}
         PACKAGE_README_FILE: ${{ inputs.package-readme-file }}
       run: |
-        pwd
-        ls
-        ls ./src
         dotnet run --project "./src/UpdateCSProj/UpdateCSProj.csproj" \
-          --filePath ${FILE_PATH} \
-          --targetFramework ${TARGET_FRAMEWORK} \
-          --implicitUsings ${IMPLICIT_USINGS} \
-          --nullable ${NULLABLE} \
-          --packageId ${PACKAGE_ID} \
-          --version ${VERSION} \
-          --author ${AUTHOR} \
-          --packageTags ${PACKAGE_TAGS} \
-          --repositoryUrl ${REPOSITORY_URL} \
-          --packageLicense ${PACKAGE_LICENSE} \
-          --packageProjectUrl ${PACKAGE_PROJECT_URL} \
-          --packageReadmeFile ${PACKAGE_README_FILE}
+          --filePath="${FILE_PATH}" \
+          --targetFramework="${TARGET_FRAMEWORK}" \
+          --implicitUsings="${IMPLICIT_USINGS}" \
+          --nullable="${NULLABLE}" \
+          --packageId="${PACKAGE_ID}" \
+          --version="${VERSION}" \
+          --author="${AUTHOR}" \
+          --packageTags="${PACKAGE_TAGS}" \
+          --repositoryUrl="${REPOSITORY_URL}" \
+          --packageLicense="${PACKAGE_LICENSE}" \
+          --packageProjectUrl="${PACKAGE_PROJECT_URL}" \
+          --packageReadmeFile="${PACKAGE_README_FILE}"
       shell: bash
