@@ -78,6 +78,19 @@ runs:
         fi
       shell: bash
 
+    - name: Check File Permissions Before Running dotnet
+      env:
+        FILE_PATH: ${{ inputs.file-path }}
+      run: |
+        echo "Checking FILE_PATH: $FILE_PATH"
+        if [ ! -f "$FILE_PATH" ]; then
+          echo "Error: FILE_PATH does not exist!"
+          exit 1
+        fi
+        ls -lah "$FILE_PATH"
+        ls -lah "$(dirname "$FILE_PATH")"
+      shell: bash
+
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
