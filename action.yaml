@@ -109,7 +109,7 @@ runs:
         PACKAGE_PROJECT_URL: ${{ inputs.package-project-url }}
         PACKAGE_README_FILE: ${{ inputs.package-readme-file }}
       run: |
-        dotnet run --project "./src/UpdateCSProj/UpdateCSProj.csproj" \
+        dotnet run --project "./src/UpdateCSProj/UpdateCSProj.csproj" -- \
           --filePath="${FILE_PATH}" \
           --targetFramework="${TARGET_FRAMEWORK}" \
           --implicitUsings="${IMPLICIT_USINGS}" \
