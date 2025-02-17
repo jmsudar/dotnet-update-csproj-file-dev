@@ -107,10 +107,9 @@ runs:
         echo "UPDATE_FILEPATH=$update_filepath" >> $GITHUB_ENV
       shell: bash
 
-    - name: Check File Permissions
+    - name: Debug Parent Directory
       run: |
-        ls -lah "$FILEPATH"
-        stat "$FILEPATH"
+        ls -lah "$(dirname "$FILEPATH")"
       shell: bash
 
     - name: Build and run UpdateCSProj
