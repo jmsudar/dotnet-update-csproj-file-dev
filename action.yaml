@@ -107,6 +107,12 @@ runs:
         echo "UPDATE_FILEPATH=$update_filepath" >> $GITHUB_ENV
       shell: bash
 
+    - name: Check File Permissions
+      run: |
+        ls -lah "$FILE_PATH"
+        stat "$FILE_PATH"
+      shell: bash
+
     - name: Build and run UpdateCSProj
       env:
         FILE_PATH: ${{ inputs.file-path }}
