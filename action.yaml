@@ -108,6 +108,8 @@ runs:
       shell: bash
 
     - name: Debug Parent Directory
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ls -lah "$(dirname "$FILEPATH")"
       shell: bash
