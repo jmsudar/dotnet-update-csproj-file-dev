@@ -56,6 +56,10 @@ inputs:
     description: 'The readme file for your package'
     required: true
     default: 'README.md'
+  github-token:
+    description: 'Token from the calling action to confer repo permissions'
+    required: true
+    default: ''
 runs:
   using: 'composite'
   steps:
@@ -109,13 +113,14 @@ runs:
 
     - name: Debug Parent Directory
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
       run: |
         ls -lah "$(dirname "$FILEPATH")"
       shell: bash
 
     - name: Build and run UpdateCSProj
       env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
         FILE_PATH: ${{ inputs.file-path }}
         TARGET_FRAMEWORK: ${{ inputs.target-framework }}
         IMPLICIT_USINGS: ${{ inputs.implicit-usings }}
