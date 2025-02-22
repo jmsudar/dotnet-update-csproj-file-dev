@@ -99,6 +99,7 @@ runs:
       uses: actions/checkout@v4
       with:
         repository: "jmsudar/dotnet-update-csproj-file"
+        path: "dotnet-update-cs-proj-file"
 
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v4
