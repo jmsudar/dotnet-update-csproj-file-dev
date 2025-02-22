@@ -111,6 +111,16 @@ runs:
         echo "UPDATE_FILEPATH=$update_filepath" >> $GITHUB_ENV
       shell: bash
 
+    - name: Check PWD
+      run: |
+        pwd
+      shell: bash
+
+    - name: Check LS
+      run: |
+        ls
+      shell: bash
+
     - name: Debug Parent Directory
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
