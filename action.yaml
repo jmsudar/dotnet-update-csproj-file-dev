@@ -108,7 +108,7 @@ runs:
 
     - name: Set Project Filepath
       run: |
-        update_filepath="$(find . -name "UpdateCSProj.cs" 2>/dev/null)"
+        update_filepath="$(find . -name "UpdateCSProj.csproj" 2>/dev/null)"
         echo "UPDATE_FILEPATH=$update_filepath" >> $GITHUB_ENV
       shell: bash
 
@@ -147,7 +147,7 @@ runs:
         PACKAGE_PROJECT_URL: ${{ inputs.package-project-url }}
         PACKAGE_README_FILE: ${{ inputs.package-readme-file }}
       run: |
-        dotnet run --project "./src/UpdateCSProj/UpdateCSProj.csproj" -- \
+        dotnet run --project "${UPDATE_FILEPATH}" -- \
           --filePath="${FILE_PATH}" \
           --targetFramework="${TARGET_FRAMEWORK}" \
           --implicitUsings="${IMPLICIT_USINGS}" \
