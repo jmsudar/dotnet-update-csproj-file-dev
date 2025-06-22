@@ -104,7 +104,7 @@ runs:
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: ${{ inputs.target-framework }}
+        dotnet-version: '6.0'
 
     - name: Set Project Filepath
       run: |
